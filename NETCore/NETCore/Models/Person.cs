@@ -12,6 +12,7 @@ namespace NETCore.Models
         public string NIK { get; set; }
         [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
         [Phone]
         public string Phone { get; set; }
@@ -25,5 +26,6 @@ namespace NETCore.Models
         }
         public Gender gender { get; set; }
 
+        public Account Account { get; set; }
     }
 }

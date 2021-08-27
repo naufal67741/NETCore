@@ -30,21 +30,42 @@ namespace NETCore.Repository
 
         public IEnumerable<Person> Get()
         {
+            if(myContext.Persons.ToList().Count == 0)
+            {
+                throw new ArgumentNullException();
+            }
             return myContext.Persons.ToList();
             /*throw new NotImplementedException();*/
         }
 
         public Person Get(string NIK)
         {
+            if(myContext.Persons.Find(NIK) != null)
+            {
+                return myContext.Persons.Find(NIK);
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
             /*throw new NotImplementedException();*/
-            return myContext.Persons.Find(NIK);
+            
         }
 
         public int Insert(Person person)
         {
-            myContext.Persons.Add(person);
-            var insert = myContext.SaveChanges();
-            return insert;
+            try
+            {
+                myContext.Persons.Add(person);
+                var insert = myContext.SaveChanges();
+                return insert;
+            }
+            catch
+            {
+                throw new DbUpdateException();
+            }
+            
+            
         }
 
         public int Update(Person person)
@@ -52,8 +73,15 @@ namespace NETCore.Repository
             /*var data = myContext.Persons.Find(NIK);*/
             /*if(data != null)
             {*/
+            try
+            {
                 myContext.Entry(person).State = EntityState.Modified;
-            return myContext.SaveChanges();
+                return myContext.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception();
+            }
             /*}*/
             /*throw new NotImplementedException();*/
         }
