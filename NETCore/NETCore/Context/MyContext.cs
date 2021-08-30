@@ -30,17 +30,15 @@ namespace NETCore.Context
             modelBuilder.Entity<Account>()
                 .HasOne(pr => pr.Profiling)
                 .WithOne(a => a.Account)
-                .HasForeignKey<Account>(pr => pr.NIK);
+                .HasForeignKey<Profiling>(pr => pr.NIK);
 
             modelBuilder.Entity<Education>()
                 .HasMany(pr => pr.Profilings)
-                .WithOne(e => e.Education)
-                .OnDelete(DeleteBehavior.SetNull);
+                .WithOne(e => e.Educations);
 
             modelBuilder.Entity<University>()
                 .HasMany(e => e.Educations)
-                .WithOne(u => u.University)
-                .OnDelete(DeleteBehavior.SetNull);
+                .WithOne(u => u.Universities);
         }
     }
 }

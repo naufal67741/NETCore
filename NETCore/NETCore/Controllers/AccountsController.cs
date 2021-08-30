@@ -12,12 +12,11 @@ namespace NETCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonsController : BaseController<Person, PersonRepository, string>
+    public class AccountsController : BaseController<Account, AccountRepository, string>
     {
-        public PersonsController(PersonRepository repository): base(repository)
+        public AccountsController(AccountRepository repository) : base(repository)
         {
 
         }
-
     }
 }

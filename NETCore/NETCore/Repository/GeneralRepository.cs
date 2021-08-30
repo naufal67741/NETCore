@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NETCore.Context;
-using NETCore.Models;
 using NETCore.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -9,54 +8,57 @@ using System.Threading.Tasks;
 
 namespace NETCore.Repository
 {
-    public class PersonRepository : IPersonRepository
+    public class GeneralRepository<Context, Entity, Key> : IRepository <Entity, Key> 
+        where Entity:class
+        where Context:MyContext
     {
         private readonly MyContext myContext;
-        public PersonRepository(MyContext myContext)
+        private readonly DbSet<Entity> dbSet;
+
+        public GeneralRepository(MyContext myContext)
         {
             this.myContext = myContext;
+            dbSet = myContext.Set<Entity>();
         }
-        public int Delete(string NIK)
+
+        public int Delete(Key key)
         {
-            /*throw new NotImplementedException();*/
-            var data = myContext.Persons.Find(NIK);
-            if(data == null)
+            var data = dbSet.Find(key);
+            if (data == null)
             {
                 throw new ArgumentNullException();
             }
-            myContext.Persons.Remove(data);
+            dbSet.Remove(data);
             return myContext.SaveChanges();
         }
 
-        public IEnumerable<Person> Get()
+        public IEnumerable<Entity> Get()
         {
-            if(myContext.Persons.ToList().Count == 0)
+            if (dbSet.ToList().Count == 0)
             {
                 throw new ArgumentNullException();
             }
-            return myContext.Persons.ToList();
-            /*throw new NotImplementedException();*/
+            return dbSet.ToList();
         }
 
-        public Person Get(string NIK)
+        public Entity Get(Key key)
         {
-            if(myContext.Persons.Find(NIK) != null)
+            if (dbSet.Find(key) != null)
             {
-                return myContext.Persons.Find(NIK);
+                return dbSet.Find(key);
             }
             else
             {
                 throw new ArgumentNullException();
             }
             /*throw new NotImplementedException();*/
-            
         }
 
-        public int Insert(Person person)
+        public int Insert(Entity entity)
         {
             try
             {
-                myContext.Persons.Add(person);
+                dbSet.Add(entity);
                 var insert = myContext.SaveChanges();
                 return insert;
             }
@@ -64,26 +66,19 @@ namespace NETCore.Repository
             {
                 throw new DbUpdateException();
             }
-            
-            
         }
 
-        public int Update(Person person)
+        public int Update(Entity entity)
         {
-            /*var data = myContext.Persons.Find(NIK);*/
-            /*if(data != null)
-            {*/
             try
             {
-                myContext.Entry(person).State = EntityState.Modified;
+                myContext.Entry(entity).State = EntityState.Modified;
                 return myContext.SaveChanges();
             }
             catch
             {
                 throw new Exception();
             }
-            /*}*/
-            /*throw new NotImplementedException();*/
         }
     }
 }

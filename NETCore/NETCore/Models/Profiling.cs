@@ -11,9 +11,9 @@ namespace NETCore.Models
         [Key]
         public string NIK { get; set; }
         [Required]
-        public int Education_Id { get; set; }
-
-        public Account Account { get; set; }
-        public Education Education { get; set; }
+        public int EducationId { get; set; }
+        public virtual Education Educations { get; set; }
+        public virtual Account Account { get; set; }
+        
     }
 }

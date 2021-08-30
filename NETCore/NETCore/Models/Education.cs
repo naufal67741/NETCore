@@ -9,17 +9,14 @@ namespace NETCore.Models
     public class Education
     {
         [Key]
-        public int Id { get; set; }
+        public int EducationId { get; set; }
         [Required]
         public string Degree { get; set; }
         [Required]
         public string GPA { get; set; }
         [Required]
-        public int MyProperty { get; set; }
-        [Required]
-        public int University_Id { get; set; }
-        public ICollection<Profiling> Profilings { get; set; }
-
-        public University University{ get; set; }
+        public int UniversityId { get; set; }
+        public virtual University Universities { get; set; }
+        public virtual ICollection<Profiling> Profilings { get; set; }
     }
 }

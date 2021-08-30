@@ -10,8 +10,8 @@ using NETCore.Context;
 namespace NETCore.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20210827033408_add_model_migration")]
-    partial class add_model_migration
+    [Migration("20210830084117_first migration")]
+    partial class firstmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,7 +37,7 @@ namespace NETCore.Migrations
 
             modelBuilder.Entity("NETCore.Models.Education", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EducationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -50,16 +50,10 @@ namespace NETCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MyProperty")
+                    b.Property<int>("UniversityId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UniversityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("University_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("EducationId");
 
                     b.HasIndex("UniversityId");
 
@@ -105,10 +99,7 @@ namespace NETCore.Migrations
                     b.Property<string>("NIK")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("EducationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Education_Id")
+                    b.Property<int>("EducationId")
                         .HasColumnType("int");
 
                     b.HasKey("NIK");
@@ -120,7 +111,7 @@ namespace NETCore.Migrations
 
             modelBuilder.Entity("NETCore.Models.University", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UniversityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -129,7 +120,7 @@ namespace NETCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UniversityId");
 
                     b.ToTable("Universities");
                 });
@@ -142,35 +133,42 @@ namespace NETCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NETCore.Models.Profiling", "Profiling")
-                        .WithOne("Account")
-                        .HasForeignKey("NETCore.Models.Account", "NIK")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Person");
-
-                    b.Navigation("Profiling");
                 });
 
             modelBuilder.Entity("NETCore.Models.Education", b =>
                 {
-                    b.HasOne("NETCore.Models.University", "University")
+                    b.HasOne("NETCore.Models.University", "Universities")
                         .WithMany("Educations")
                         .HasForeignKey("UniversityId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("University");
+                    b.Navigation("Universities");
                 });
 
             modelBuilder.Entity("NETCore.Models.Profiling", b =>
                 {
-                    b.HasOne("NETCore.Models.Education", "Education")
+                    b.HasOne("NETCore.Models.Education", "Educations")
                         .WithMany("Profilings")
                         .HasForeignKey("EducationId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Education");
+                    b.HasOne("NETCore.Models.Account", "Account")
+                        .WithOne("Profiling")
+                        .HasForeignKey("NETCore.Models.Profiling", "NIK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Educations");
+                });
+
+            modelBuilder.Entity("NETCore.Models.Account", b =>
+                {
+                    b.Navigation("Profiling");
                 });
 
             modelBuilder.Entity("NETCore.Models.Education", b =>
@@ -179,11 +177,6 @@ namespace NETCore.Migrations
                 });
 
             modelBuilder.Entity("NETCore.Models.Person", b =>
-                {
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("NETCore.Models.Profiling", b =>
                 {
                     b.Navigation("Account");
                 });

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NETCore.Context;
 using NETCore.Repository;
+using NETCore.Repository.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,20 @@ namespace NETCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            /*services.AddControllers();*/
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
             services.AddScoped<PersonRepository>();
-            services.AddDbContext<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NETCoreContext")));
+            services.AddScoped<EducationRepository>();
+            services.AddScoped<AccountRepository>();
+            services.AddScoped<ProfilingRepository>();
+            services.AddScoped<UniversityRepository>();
+            /*services.AddDbContext<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NETCoreContext")));*/
+            services.AddDbContext<MyContext>(options =>
+                options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("NETCoreContext"))
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

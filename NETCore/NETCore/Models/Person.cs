@@ -25,7 +25,6 @@ namespace NETCore.Models
             Female
         }
         public Gender gender { get; set; }
-
-        public Account Account { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

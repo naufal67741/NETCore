@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NETCore.Repository.Interface
 {
-    interface IPersonRepository
+    interface IOldPersonRepository
     {
         IEnumerable<Person> Get();
         Person Get(string NIK);

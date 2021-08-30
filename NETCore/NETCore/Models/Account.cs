@@ -13,8 +13,8 @@ namespace NETCore.Models
         [Required]
         public string Password { get; set; }
 
-        public Person Person { get; set; }
+        public virtual Person Person { get; set; }
 
-        public Profiling Profiling { get; set; }
+        public virtual Profiling Profiling { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace NETCore.Models
     public class University
     {
         [Key]
-        public int Id { get; set; }
+        public int UniversityId { get; set; }
         [Required]
         public string Name { get; set; }
 
-        public ICollection<Education> Educations { get; set; }
+        public virtual ICollection<Education> Educations { get; set; }
     }
 }
