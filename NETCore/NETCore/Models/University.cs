@@ -14,5 +14,10 @@ namespace NETCore.Models
         public string Name { get; set; }
 
         public virtual ICollection<Education> Educations { get; set; }
+
+        public University(string name)
+        {
+            Name = name;
+        }
     }
 }

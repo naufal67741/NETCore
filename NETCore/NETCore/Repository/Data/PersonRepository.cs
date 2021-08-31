@@ -1,4 +1,5 @@
-﻿using NETCore.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using NETCore.Context;
 using NETCore.Models;
 using NETCore.ViewModel;
 using System;
@@ -32,7 +33,8 @@ namespace NETCore.Repository.Data
                                     LastName = p.LastName,
                                     Phone = p.Phone,
                                     BirthDate = p.BirthDate,
-                                    /*gender = p.gender.getS,*/
+                                    /*gender = Enum.GetValues(typeof(p.gender)).Cast<PersonVM.Gender>(),*/
+                                    /*gender = Enum.Parse(PersonVM.Gender,1),*/
                                     Salary = p.Salary,
                                     Email = p.Email,
                                     Password = a.Password,
@@ -67,6 +69,45 @@ namespace NETCore.Repository.Data
                                     GPA = e.GPA
                                 }).Where(p => p.NIK == NIK).First();
             return getPersonVMs;
+        }
+
+        public int Insert(PersonVM personVM)
+        {
+            try
+            {
+                /*myContext.per.Add(entity);*/
+                Person person = new Person(personVM.NIK,
+                                               personVM.FirstName,
+                                               personVM.LastName,
+                                               personVM.Phone,
+                                               personVM.BirthDate,
+                                               personVM.Salary,
+                                               personVM.Email
+                                               );
+                myContext.Persons.Add(person);
+                myContext.SaveChanges();
+
+                Account account = new Account(personVM.NIK, personVM.Password);
+                myContext.Accounts.Add(account);
+                myContext.SaveChanges();
+
+                /*University university = new University("Temp Name");
+                myContext.Universities.Add(university);*/
+
+                Education education = new Education(personVM.Degree, personVM.GPA, 3);
+                myContext.Educations.Add(education);
+                myContext.SaveChanges();
+
+                Profiling profiling = new Profiling(personVM.NIK, education.EducationId);
+                myContext.Profilings.Add(profiling);
+                var insert = myContext.SaveChanges();
+
+                return insert;
+            }
+            catch
+            {
+                throw new DbUpdateException();
+            }
         }
     }
 }

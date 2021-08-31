@@ -14,6 +14,11 @@ namespace NETCore.Models
         public int EducationId { get; set; }
         public virtual Education Educations { get; set; }
         public virtual Account Account { get; set; }
-        
+
+        public Profiling(string nIK, int educationId)
+        {
+            NIK = nIK;
+            EducationId = educationId;
+        }
     }
 }

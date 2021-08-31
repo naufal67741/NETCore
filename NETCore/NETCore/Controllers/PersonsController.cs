@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NETCore.Base;
 using NETCore.Models;
 using NETCore.Repository.Data;
+using NETCore.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace NETCore.Controllers
         {
             this.repository = repository;
         }
-
+        //api/persons/getperson
         [HttpGet("GetPerson")]
         public ActionResult GetPerson()
         {
@@ -71,6 +72,32 @@ namespace NETCore.Controllers
                 });
                 return get;
             }
+        }
+
+        [HttpPost("Register")]
+        public ActionResult Insert(PersonVM personVM)
+        {
+            try
+            {
+                repository.Insert(personVM);
+                return Ok(new
+                {
+                    /*statusCode = StatusCode(200),*/
+                    status = HttpStatusCode.OK,
+                    message = "Success"
+                });
+            }
+            catch
+            {
+                return BadRequest(new
+                {
+                    status = HttpStatusCode.BadRequest,
+                    message = "Error duplicate data",
+                    /*error = e*/
+                });
+            }
+
+
         }
 
     }

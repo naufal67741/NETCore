@@ -16,5 +16,11 @@ namespace NETCore.Models
         public virtual Person Person { get; set; }
 
         public virtual Profiling Profiling { get; set; }
+
+        public Account(string nIK, string password)
+        {
+            NIK = nIK;
+            Password = password;
+        }
     }
 }

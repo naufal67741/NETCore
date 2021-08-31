@@ -26,5 +26,16 @@ namespace NETCore.Models
         }
         public Gender gender { get; set; }
         public virtual Account Account { get; set; }
+
+        public Person(string nIK, string firstName, string lastName, string phone, DateTime birthDate, int salary, string email)
+        {
+            NIK = nIK;
+            FirstName = firstName;
+            LastName = lastName;
+            Phone = phone;
+            BirthDate = birthDate;
+            Salary = salary;
+            Email = email;
+        }
     }
 }
