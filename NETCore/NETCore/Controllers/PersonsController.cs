@@ -122,5 +122,35 @@ namespace NETCore.Controllers
                 });
             }
         }
+
+        [HttpPost("Login")]
+        public ActionResult Login(PersonVM personVM)
+        {
+                int output = repository.Login(personVM);
+                if(output == 100)
+                {
+                    return NotFound(new
+                    {
+                        status = HttpStatusCode.NotFound,
+                        message = "Email not available",
+                        /*error = e*/
+                    });
+                }else if (output == 200)
+                {
+                    return BadRequest(new
+                    {
+                        status = HttpStatusCode.BadRequest,
+                        message = "Wrong Password",
+                        /*error = e*/
+                    });
+                }
+                return Ok(new
+                {
+                    /*statusCode = StatusCode(200),*/
+                    status = HttpStatusCode.OK,
+                    message = "Success"
+                });
+            
+        }
     }
 }

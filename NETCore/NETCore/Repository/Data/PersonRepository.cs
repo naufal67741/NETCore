@@ -152,6 +152,29 @@ namespace NETCore.Repository.Data
             return false;
         }
 
+        public int Login(PersonVM personVM)
+        {
+            //return 100 = email ga ketemu
+            //return 200 = password salah
+            //return 1 = login berhasil
+            var checkEmail = myContext.Persons.Where(e => e.Email == personVM.Email).FirstOrDefault();
+            if(checkEmail == null)
+            {
+                return 100;
+            }
+            /*if(checkEmail)*/
+            var account = myContext.Accounts.Where(n => n.NIK == checkEmail.NIK).FirstOrDefault();
+            if (account == null)
+            {
+                return 100;
+            }
+            if (account.Password != personVM.Password)
+            {
+                return 200;
+            }
+            return 1;
+        }
+
 
     }
 }
