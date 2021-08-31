@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace NETCore.Models
         [Required]
         public string Name { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Education> Educations { get; set; }
 
         public University(string name)

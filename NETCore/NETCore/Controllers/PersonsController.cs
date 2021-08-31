@@ -79,7 +79,32 @@ namespace NETCore.Controllers
         {
             try
             {
-                repository.Insert(personVM);
+                int output = repository.Insert(personVM);
+                if(output == 100)
+                {
+                    return BadRequest(new
+                    {
+                        status = HttpStatusCode.BadRequest,
+                        message = "Duplicate email",
+                        /*error = e*/
+                    });
+                }else if (output == 200)
+                {
+                    return BadRequest(new
+                    {
+                        status = HttpStatusCode.BadRequest,
+                        message = "Duplicate NIK",
+                        /*error = e*/
+                    });
+                }else if (output == 300)
+                {
+                    return BadRequest(new
+                    {
+                        status = HttpStatusCode.BadRequest,
+                        message = "Duplicate Email",
+                        /*error = e*/
+                    });
+                }
                 return Ok(new
                 {
                     /*statusCode = StatusCode(200),*/
@@ -96,9 +121,6 @@ namespace NETCore.Controllers
                     /*error = e*/
                 });
             }
-
-
         }
-
     }
 }

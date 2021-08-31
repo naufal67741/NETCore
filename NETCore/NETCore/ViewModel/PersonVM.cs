@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,9 +22,12 @@ namespace NETCore.ViewModel
             Male,
             Female
         }
+        [JsonConverter(typeof(StringEnumConverter))]
         public Gender gender { get; set; }
         public string Password { get; set; }
         public string Degree { get; set; }
         public string GPA { get; set; }
+
+        public int UniversityId { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -24,10 +26,12 @@ namespace NETCore.Models
             Male,
             Female
         }
+        [JsonConverter(typeof(StringEnumConverter))]
         public Gender gender { get; set; }
+        [JsonIgnore]
         public virtual Account Account { get; set; }
 
-        public Person(string nIK, string firstName, string lastName, string phone, DateTime birthDate, int salary, string email)
+        /*public Person(string nIK, string firstName, string lastName, string phone, DateTime birthDate, int salary, string email)
         {
             NIK = nIK;
             FirstName = firstName;
@@ -37,5 +41,11 @@ namespace NETCore.Models
             Salary = salary;
             Email = email;
         }
+
+        public Person(string nIK, string firstName, string lastName, string phone, DateTime birthDate, int salary, string email, Gender gender) : this(nIK, firstName, lastName, phone, birthDate, salary, email)
+        {
+            this.gender = gender;
+        }*/
+
     }
 }
