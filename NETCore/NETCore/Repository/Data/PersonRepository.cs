@@ -152,13 +152,13 @@ namespace NETCore.Repository.Data
             return false;
         }
         //test
-        public int Login(PersonVM personVM)
+        public int Login(LoginVM loginVM)
         {
             //return 100 = email ga ketemu
             //return 200 = password salah
             //return 1 = login berhasil
-            var checkEmail = myContext.Persons.Where(e => e.Email == personVM.Email).FirstOrDefault();
-            if(checkEmail == null)
+            var checkEmail = myContext.Persons.Where(e => e.Email == loginVM.Email).FirstOrDefault();
+            if (checkEmail == null)
             {
                 return 100;
             }
@@ -168,7 +168,7 @@ namespace NETCore.Repository.Data
             {
                 return 100;
             }
-            if (account.Password != personVM.Password)
+            if (account.Password != loginVM.Password)
             {
                 return 200; //Nambah Comment ini
             }
