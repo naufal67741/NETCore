@@ -32,7 +32,8 @@ namespace NETCore.Repository.Data
                 return 100;
             }
             /*account.Password = Guid.NewGuid().ToString();*/
-            string bodyEmail = $"Kamu lupa password ? Kalau iya, klik di sini reset-password/email={checkEmail.Email}&token={checkEmail.NIK}, else abaikan";
+            checkEmail.Token = Guid.NewGuid().ToString();
+            string bodyEmail = $"Kamu lupa password ? Kalau iya, klik di sini reset-password/email={checkEmail.Email}&token={checkEmail.Token}, else abaikan";
             Email(bodyEmail,checkEmail.Email);
             return 1;
         }

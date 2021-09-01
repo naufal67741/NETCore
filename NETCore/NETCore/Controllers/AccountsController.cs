@@ -43,11 +43,11 @@ namespace NETCore.Controllers
             });
         }
 
-        [HttpPost("reset-password/email={Email}&token={NIK}")]
-        public ActionResult ResetPassword(string Email, string NIK)
+        [HttpPost("reset-password/email={Email}&token={Token}")]
+        public ActionResult ResetPassword(string Email, string Token)
         {
             /*string tempEmail = Request.Query.Keys.Contains("email").ToString();*/
-            int output = repository.ResetPassword(Email, NIK);
+            int output = repository.ResetPassword(Email, Token);
             if (output == 100)
             {
                 return BadRequest(new
