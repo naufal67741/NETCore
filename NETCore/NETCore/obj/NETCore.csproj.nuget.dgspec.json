@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\NETCore.csproj": {}
+    "C:\\Users\\rioga\\OneDrive\\Documents\\GitHub\\New folder\\NetCore\\NetCoreGroup\\NETCore\\NETCore\\NETCore.csproj": {}
   },
   "projects": {
-    "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\NETCore.csproj": {
+    "C:\\Users\\rioga\\OneDrive\\Documents\\GitHub\\New folder\\NetCore\\NetCoreGroup\\NETCore\\NETCore\\NETCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\NETCore.csproj",
+        "projectUniqueName": "C:\\Users\\rioga\\OneDrive\\Documents\\GitHub\\New folder\\NetCore\\NetCoreGroup\\NETCore\\NETCore\\NETCore.csproj",
         "projectName": "NETCore",
-        "projectPath": "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\NETCore.csproj",
-        "packagesPath": "C:\\Users\\Naufal\\.nuget\\packages\\",
-        "outputPath": "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\obj\\",
+        "projectPath": "C:\\Users\\rioga\\OneDrive\\Documents\\GitHub\\New folder\\NetCore\\NetCoreGroup\\NETCore\\NETCore\\NETCore.csproj",
+        "packagesPath": "C:\\Users\\rioga\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rioga\\OneDrive\\Documents\\GitHub\\New folder\\NetCore\\NetCoreGroup\\NETCore\\NETCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Naufal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rioga\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packagesource": {}
         },
         "frameworks": {
           "netcoreapp3.1": {

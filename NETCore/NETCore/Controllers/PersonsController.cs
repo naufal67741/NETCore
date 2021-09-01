@@ -124,9 +124,9 @@ namespace NETCore.Controllers
         }
 
         [HttpPost("Login")]
-        public ActionResult Login(PersonVM personVM)
+        public ActionResult Login(LoginVM loginVM)
         {
-                int output = repository.Login(personVM);
+                int output = repository.Login(loginVM);
                 if(output == 100)
                 {
                     return NotFound(new
