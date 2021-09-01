@@ -83,29 +83,30 @@ namespace NETCore.Repository
             }
         }
 
-        /*public static void Email(string htmlString, string toMailAddress)
+        public static void Email(string htmlString, string toMailAddress)
         {
-            try
-            {
+                string fromMail = "naufalbdo@gmail.com";
+                string fromPassword = "PASSWORD_LU";
                 MailMessage message = new MailMessage();
-                SmtpClient smtp = new SmtpClient();
-                message.From = new MailAddress("naufal677418873@gmail.com");
+                
+                message.From = new MailAddress(fromMail);
                 message.To.Add(new MailAddress(toMailAddress));
                 message.Subject = "Test";
-                message.IsBodyHtml = true; //to make message body as html  
-                message.Body = htmlString;
-                smtp.Port = 587;
-                smtp.Host = "smtp.gmail.com"; //for gmail host  
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("FromMailAddress", "password");
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Send(message);
-            }
-            catch (Exception) { }
-        }*/
+                message.Body = "<html><body>"+htmlString+"<html><body>";
+                message.IsBodyHtml = true;
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromMail, fromPassword),
+                    EnableSsl = true,
+                    
+                };
+                
+                smtpClient.Send(message);
+        }
 
-        public static void Email(string body, string toMailAddress)
+        /*public static void Email(string body, string toMailAddress)
         {
             SmtpClient smtpClient = new SmtpClient("smtp.mailgun.org",587);
 
@@ -121,6 +122,6 @@ namespace NETCore.Repository
             mail.Body = body;
 
             smtpClient.Send(mail);
-        }
+        }*/
     }
 }
