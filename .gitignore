@@ -37,3 +37,13 @@ NETCore/NETCore/obj/NETCore.csproj.nuget.g.props
 NETCore/NETCore/obj/NETCore.csproj.nuget.dgspec.json
 NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.csproj.AssemblyReference.cache
 NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.assets.cache
+*.cache
+NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.csproj.CoreCompileInputs.cache
+NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.csproj.FileListAbsolute.txt
+NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.dll
+NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.genruntimeconfig.cache
+NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.pdb
+NETCore/NETCore/obj/NETCore.csproj.nuget.dgspec.json
+NETCore/NETCore/obj/NETCore.csproj.nuget.g.props
+NETCore/NETCore/obj/project.assets.json
+NETCore/NETCore/obj/project.nuget.cache
