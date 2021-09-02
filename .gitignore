@@ -22,3 +22,12 @@ NETCore/NETCore/appsettings.json
 NETCore/NETCore/appsettings.json
 NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.assets.cache
 NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.csproj.AssemblyReference.cache
+NETCore/NETCore/bin/Debug/netcoreapp3.1/BouncyCastle.Crypto.dll
+NETCore/NETCore/bin/Debug/netcoreapp3.1/MailKit.dll
+NETCore/NETCore/bin/Debug/netcoreapp3.1/MimeKit.dll
+NETCore/NETCore/obj/project.nuget.cache
+NETCore/NETCore/obj/project.assets.json
+NETCore/NETCore/obj/NETCore.csproj.nuget.g.props
+NETCore/NETCore/obj/NETCore.csproj.nuget.dgspec.json
+NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.csproj.AssemblyReference.cache
+NETCore/NETCore/obj/Debug/netcoreapp3.1/NETCore.assets.cache

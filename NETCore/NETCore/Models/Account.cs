@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,8 +14,10 @@ namespace NETCore.Models
         [Required]
         public string Password { get; set; }
 
+        [JsonIgnore]
         public virtual Person Person { get; set; }
 
+        [JsonIgnore]
         public virtual Profiling Profiling { get; set; }
 
         public Account(string nIK, string password)

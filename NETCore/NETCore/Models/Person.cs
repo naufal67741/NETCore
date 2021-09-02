@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace NETCore.Models
 {
-    //model person
     public class Person
     {
         [Key]

@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace NETCore.ViewModel
 {
-    public class LoginVM
+    public class EmailVM
     {
         public string Email { get; set; }
-        public string Password { get; set; }
     }
 }
