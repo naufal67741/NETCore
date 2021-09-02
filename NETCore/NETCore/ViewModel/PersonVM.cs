@@ -24,7 +24,7 @@ namespace NETCore.ViewModel
         }
         [JsonConverter(typeof(StringEnumConverter))]
         public Gender gender { get; set; }
-        public string Password { get; set; }
+        public string Password { internal get; set; }
         public string Degree { get; set; }
         public string GPA { get; set; }
         public string Token { get; set; }

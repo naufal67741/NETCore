@@ -56,7 +56,8 @@ namespace NETCore.Controllers
                     message = "Wrong Token !",
                     /*error = e*/
                 });
-            }else if (output == 200)
+            }
+            else if (output == 200)
             {
                 return BadRequest(new
                 {
@@ -72,6 +73,41 @@ namespace NETCore.Controllers
                 message = "Password has been reset !"
             });
             /*return RedirectToAction()*/
+        }
+
+        [HttpPost("change-password")]
+        public ActionResult ChangePassword(ChangePasswordVM cpVM)
+        {
+            int output = repository.ChangePassword(cpVM);
+            if (output == 100)
+            {
+                return NotFound(new
+                {
+                    status = HttpStatusCode.NotFound,
+                    message = "NIK tdk terdaftar!"
+                });
+            }
+            else if (output == 200)
+            {
+                return BadRequest(new
+                {
+                    status = HttpStatusCode.BadRequest,
+                    message = "Email tdk terdaftar!"
+                });
+            }
+            else if (output == 300)
+            {
+                return BadRequest(new
+                {
+                    status = HttpStatusCode.BadRequest,
+                    message = "Konfirmasi password tidak sama!"
+                });
+            }
+            return Ok(new
+            {
+                status = HttpStatusCode.OK,
+                message = "Success ganti password!"
+            });
         }
 
     }

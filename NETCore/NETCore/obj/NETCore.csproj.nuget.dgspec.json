@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\NETCore.csproj": {}
+    "F:\\OAX\\DOC\\_Project\\NETCore2\\NETCore\\NETCore\\NETCore\\NETCore.csproj": {}
   },
   "projects": {
-    "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\NETCore.csproj": {
+    "F:\\OAX\\DOC\\_Project\\NETCore2\\NETCore\\NETCore\\NETCore\\NETCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\NETCore.csproj",
+        "projectUniqueName": "F:\\OAX\\DOC\\_Project\\NETCore2\\NETCore\\NETCore\\NETCore\\NETCore.csproj",
         "projectName": "NETCore",
-        "projectPath": "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\NETCore.csproj",
-        "packagesPath": "C:\\Users\\Naufal\\.nuget\\packages\\",
-        "outputPath": "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\obj\\",
+        "projectPath": "F:\\OAX\\DOC\\_Project\\NETCore2\\NETCore\\NETCore\\NETCore\\NETCore.csproj",
+        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+        "outputPath": "F:\\OAX\\DOC\\_Project\\NETCore2\\NETCore\\NETCore\\NETCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Naufal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "BCrypt.Net-Core": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
             "Microsoft.AspNetCore.JsonPatch": {
               "target": "Package",
               "version": "[5.0.9, )"

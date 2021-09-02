@@ -58,11 +58,51 @@ namespace NETCore.Repository.Data
             {
                 return 100;
             }
-            account.Password = BCrypt.Net.BCrypt.HashPassword(Guid.NewGuid().ToString());
-            Update(account); checkEmail.Token = null;
+            //generate new password
+            string passwordReset = Guid.NewGuid().ToString();
+            account.Password = BCrypt.Net.BCrypt.HashPassword(passwordReset);
+
+            //kirim email
+            string bodyEmail = $"Password baru : {passwordReset}";
+            Email(bodyEmail, checkEmail.Email);
+
+            //save ke DB
+            Update(account);
+            checkEmail.Token = null;
             myContext.SaveChanges();
 
+
             return 1; //kirim email
+        }
+        public int ChangePassword(ChangePasswordVM cpVM)
+        {
+            //return 100 = NIK tdk terdaftar
+            //return 200 = email tdk terdaftar
+            //return 300 = confirm password tdk match
+
+            var checkEmail = myContext.Persons.Where(e => e.Email == cpVM.Email).FirstOrDefault();
+            if (checkEmail == null)
+            {
+                return 200;
+            }
+            var account = myContext.Accounts.Where(n => n.NIK == checkEmail.NIK).FirstOrDefault();
+            if (account == null)
+            {
+                return 100;
+            }
+            if(cpVM.NewPassword != cpVM.ConfirmNewPassword)
+            {
+                return 300;
+            }
+
+            //generate new password
+            string newPassword = cpVM.ConfirmNewPassword;
+            account.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+
+            //save ke DB
+            Update(account);
+
+            return 1;
         }
     }
 }

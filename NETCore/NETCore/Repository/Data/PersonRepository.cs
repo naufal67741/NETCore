@@ -42,7 +42,7 @@ namespace NETCore.Repository.Data
                                     gender = (PersonVM.Gender)p.gender,
                                     Salary = p.Salary,
                                     Email = p.Email,
-                                    Password = a.Password,
+                                    //Password = a.Password,
                                     Degree = e.Degree,
                                     GPA = e.GPA,
                                     UniversityId = u.UniversityId
@@ -73,7 +73,7 @@ namespace NETCore.Repository.Data
                                     gender = (PersonVM.Gender)p.gender,
                                     Salary = p.Salary,
                                     Email = p.Email,
-                                    Password = a.Password,
+                                    //Password = a.Password,
                                     Degree = e.Degree,
                                     GPA = e.GPA,
                                     UniversityId = u.UniversityId

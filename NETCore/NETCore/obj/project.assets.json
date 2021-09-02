@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "BCrypt.Net-Core/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {}
+        }
+      },
       "Castle.Core/4.4.1": {
         "type": "package",
         "dependencies": {
@@ -2749,6 +2758,29 @@
     }
   },
   "libraries": {
+    "BCrypt.Net-Core/1.6.0": {
+      "sha512": "hsKiHGjrnlDW05MzuzzlD9gNP8YOW2KbZ+FbvISrilsKJJ76tXKhWey6psZX5sd7DczNpSU2U6ldjPoblk8BLw==",
+      "type": "package",
+      "path": "bcrypt.net-core/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-core.1.6.0.nupkg.sha512",
+        "bcrypt.net-core.nuspec",
+        "lib/net40/BCrypt.Net-Core.dll",
+        "lib/net40/BCrypt.Net-Core.pdb",
+        "lib/net45/BCrypt.Net-Core.dll",
+        "lib/net45/BCrypt.Net-Core.pdb",
+        "lib/net451/BCrypt.Net-Core.dll",
+        "lib/net451/BCrypt.Net-Core.pdb",
+        "lib/net452/BCrypt.Net-Core.dll",
+        "lib/net452/BCrypt.Net-Core.pdb",
+        "lib/netstandard1.3/BCrypt.Net-Core.dll",
+        "lib/netstandard1.3/BCrypt.Net-Core.pdb",
+        "lib/netstandard2.0/BCrypt.Net-Core.dll",
+        "lib/netstandard2.0/BCrypt.Net-Core.pdb"
+      ]
+    },
     "Castle.Core/4.4.1": {
       "sha512": "zanbjWC0Y05gbx4eGXkzVycOQqVOFVeCjVsDSyuao9P4mtN1w3WxxTo193NGC7j3o2u3AJRswaoC6hEbnGACnQ==",
       "type": "package",
@@ -8951,6 +8983,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "BCrypt.Net-Core >= 1.6.0",
       "Microsoft.AspNetCore.JsonPatch >= 5.0.9",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.0.0",
       "Microsoft.Bcl.AsyncInterfaces >= 5.0.0",
@@ -8963,19 +8996,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Naufal\\.nuget\\packages\\": {}
+    "C:\\Users\\asus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\NETCore.csproj",
+      "projectUniqueName": "F:\\OAX\\DOC\\_Project\\NETCore2\\NETCore\\NETCore\\NETCore\\NETCore.csproj",
       "projectName": "NETCore",
-      "projectPath": "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\NETCore.csproj",
-      "packagesPath": "C:\\Users\\Naufal\\.nuget\\packages\\",
-      "outputPath": "N:\\k\\Real Intern\\Belajar\\3. BE\\NetCoreGroup\\NETCore\\NETCore\\NETCore\\obj\\",
+      "projectPath": "F:\\OAX\\DOC\\_Project\\NETCore2\\NETCore\\NETCore\\NETCore\\NETCore.csproj",
+      "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+      "outputPath": "F:\\OAX\\DOC\\_Project\\NETCore2\\NETCore\\NETCore\\NETCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Naufal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9001,6 +9034,10 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "BCrypt.Net-Core": {
+            "target": "Package",
+            "version": "[1.6.0, )"
+          },
           "Microsoft.AspNetCore.JsonPatch": {
             "target": "Package",
             "version": "[5.0.9, )"
