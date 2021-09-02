@@ -53,7 +53,7 @@ namespace NETCore.Controllers
                 return BadRequest(new
                 {
                     status = HttpStatusCode.BadRequest,
-                    message = "Wrong NIK !",
+                    message = "Wrong Token !",
                     /*error = e*/
                 });
             }else if (output == 200)

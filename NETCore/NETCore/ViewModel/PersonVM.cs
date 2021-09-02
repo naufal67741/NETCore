@@ -27,7 +27,7 @@ namespace NETCore.ViewModel
         public string Password { get; set; }
         public string Degree { get; set; }
         public string GPA { get; set; }
-
+        public string Token { get; set; }
         public int UniversityId { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using static NETCore.Models.Person;
 
 namespace NETCore.Repository.Data
@@ -31,6 +32,7 @@ namespace NETCore.Repository.Data
                                 select new PersonVM
                                 {
                                     NIK = p.NIK,
+                                    Token = p.Token,
                                     FullName = p.FirstName + " " + p.LastName,
                                     FirstName = p.FirstName,
                                     LastName = p.LastName,
@@ -84,16 +86,6 @@ namespace NETCore.Repository.Data
         {
             try
             {
-                /*myContext.per.Add(entity);*/
-                /*Person person = new Person(personVM.NIK,
-                                               personVM.FirstName,
-                                               personVM.LastName,
-                                               personVM.Phone,
-                                               personVM.BirthDate,
-                                               personVM.Salary,
-                                               personVM.Email,
-                                               (Gender)personVM.gender
-                                               );*/
                 Person person = new Person();
                 person.Email = personVM.Email;
                 if (isDuplicate(personVM.Email.ToString(), "Email") == true)
@@ -118,7 +110,8 @@ namespace NETCore.Repository.Data
                 myContext.Persons.Add(person);
                 myContext.SaveChanges();
 
-                Account account = new Account(personVM.NIK, personVM.Password);
+                Account account = new Account(personVM.NIK,
+                                    BCrypt.Net.BCrypt.HashPassword(personVM.Password));
                 myContext.Accounts.Add(account);
                 myContext.SaveChanges();
 
@@ -168,7 +161,8 @@ namespace NETCore.Repository.Data
             {
                 return 100;
             }
-            if (account.Password != loginVM.Password)
+            /*if (account.Password != loginVM.Password)*/
+            if (!BCrypt.Net.BCrypt.Verify(loginVM.Password, account.Password))
             {
                 return 200; //Nambah Comment ini
             }
