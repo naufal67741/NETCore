@@ -32,12 +32,15 @@ namespace NETCore.Repository.Data
                 return 100;
             }
             /*account.Password = Guid.NewGuid().ToString();*/
-            string bodyEmail = $"Kamu lupa password ? Kalau iya, klik di sini reset-password/email={checkEmail.Email}&token={checkEmail.NIK}, else abaikan";
+            checkEmail.Token = Guid.NewGuid().ToString();
+
+            string bodyEmail = $"Kamu lupa password ? Kalau iya, klik di sini reset-password/email={checkEmail.Email}&token={checkEmail.Token}, else abaikan";
             Email(bodyEmail,checkEmail.Email);
+            myContext.SaveChanges();
             return 1;
         }
 
-        public int ResetPassword(string email, string NIK)
+        public int ResetPassword(string email, string token)
         {
             //return 100 = NIK salah
             //return 200 = email salah
@@ -46,7 +49,7 @@ namespace NETCore.Repository.Data
             {
                 return 200;
             }
-            if (checkEmail.NIK != NIK)
+            if (checkEmail.Token != token)
             {
                 return 100;
             }
@@ -55,11 +58,11 @@ namespace NETCore.Repository.Data
             {
                 return 100;
             }
-            account.Password = Guid.NewGuid().ToString();
-            /*myContext.SaveChanges();*/
-            Update(account);
-            //kirim email
-            return 1;
+            account.Password = BCrypt.Net.BCrypt.HashPassword(Guid.NewGuid().ToString());
+            Update(account); checkEmail.Token = null;
+            myContext.SaveChanges();
+
+            return 1; //kirim email
         }
     }
 }

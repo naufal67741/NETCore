@@ -1,5 +1,4 @@
-﻿using MailKit.Net.Smtp;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using NETCore.Context;
 using NETCore.Repository.Interface;
 using System;
@@ -85,28 +84,6 @@ namespace NETCore.Repository
             }
         }
 
-        //public static void email(string htmlstring, string tomailaddress)
-        //{
-        //    try
-        //    {
-        //        mailmessage message = new mailmessage();
-        //        smtpclient smtp = new SmtpClient();
-        //        message.from = new mailaddress("naufal677418873@gmail.com");
-        //        message.to.add(new mailaddress(tomailaddress));
-        //        message.subject = "test";
-        //        message.isbodyhtml = true; //to make message body as html  
-        //        message.body = htmlstring;
-        //        smtp.port = 587;
-        //        smtp.host = "smtp.gmail.com"; //for gmail host  
-        //        smtp.enablessl = true;
-        //        smtp.usedefaultcredentials = false;
-        //        smtp.credentials = new networkcredential("frommailaddress", "password");
-        //        smtp.deliverymethod = smtpdeliverymethod.network;
-        //        smtp.send(message);
-        //    }
-        //    catch (exception) { }
-        //}
-
         public static void Email(string htmlString, string toMailAddress)
         {
             string fromMail = "octa.aks@gmail.com";
@@ -128,45 +105,5 @@ namespace NETCore.Repository
             };
             smtpClient.Send(message);
         }
-
-        //public static void Email(string htmlString, string toMailAddress)
-        //{
-        //    try
-        //    {
-        //        MailMessage message = new MailMessage();
-        //        SmtpClient smtp = new SmtpClient();
-        //        message.From = new MailAddress("octa.aks@gmail.com");
-        //        message.To.Add(new MailAddress(toMailAddress));
-        //        message.Subject = "Test";
-        //        message.IsBodyHtml = true; //to make message body as html  
-        //        message.Body = htmlString;
-        //        smtp.Port = 587;
-        //        smtp.Host = "smtp.gmail.com"; //for gmail host  
-        //        smtp.EnableSsl = true;
-        //        smtp.UseDefaultCredentials = false;
-        //        smtp.Credentials = new NetworkCredential("octa.aks@gmail.com", "maliecky89910171");
-        //        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-        //        smtp.Send(message);
-        //    }
-        //    catch (Exception) { }
-        //}
-
-        //public static void Email(string body, string toMailAddress)
-        //{
-        //    SmtpClient smtpClient = new SmtpClient("smtp.mailgun.org",587);
-
-        //    smtpClient.Credentials = new System.Net.NetworkCredential("postmaster@sandboxd1a3cc40065b464083b637c8c1c8f115.mailgun.org", "88150a33edbfa8e4aa72d10f5a5c62d5-c4d287b4-21523c1b");
-        //    //smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
-        //    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-        //    smtpClient.EnableSsl = true;
-        //    MailMessage mail = new MailMessage();
-
-        //    //Setting From , To and CC
-        //    mail.From = new MailAddress("postmaster@sandboxd1a3cc40065b464083b637c8c1c8f115.mailgun.org", "MyWeb Site");
-        //    mail.To.Add(new MailAddress(toMailAddress));
-        //    mail.Body = body;
-
-        //    smtpClient.Send(mail);
-        //}
     }
 }

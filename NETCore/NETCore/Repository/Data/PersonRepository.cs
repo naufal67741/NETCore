@@ -31,6 +31,7 @@ namespace NETCore.Repository.Data
                                 select new PersonVM
                                 {
                                     NIK = p.NIK,
+                                    Token = p.Token,
                                     FullName = p.FirstName + " " + p.LastName,
                                     FirstName = p.FirstName,
                                     LastName = p.LastName,
@@ -80,6 +81,7 @@ namespace NETCore.Repository.Data
             return getPersonVMs;
         }
 
+        //register
         public int Insert(PersonVM personVM)
         {
             try
@@ -118,7 +120,7 @@ namespace NETCore.Repository.Data
                 myContext.Persons.Add(person);
                 myContext.SaveChanges();
 
-                Account account = new Account(personVM.NIK, personVM.Password);
+                Account account = new Account(personVM.NIK, BCrypt.Net.BCrypt.HashPassword(personVM.Password));
                 myContext.Accounts.Add(account);
                 myContext.SaveChanges();
 
@@ -168,7 +170,7 @@ namespace NETCore.Repository.Data
             {
                 return 100;
             }
-            if (account.Password != loginVM.Password)
+            if (!BCrypt.Net.BCrypt.Verify(loginVM.Password, account.Password))
             {
                 return 200; //Nambah Comment ini
             }

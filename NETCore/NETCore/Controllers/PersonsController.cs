@@ -101,7 +101,7 @@ namespace NETCore.Controllers
                     return BadRequest(new
                     {
                         status = HttpStatusCode.BadRequest,
-                        message = "Duplicate Email",
+                        message = "Duplicate Phone",
                         /*error = e*/
                     });
                 }
