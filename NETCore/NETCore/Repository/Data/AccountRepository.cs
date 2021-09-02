@@ -78,7 +78,8 @@ namespace NETCore.Repository.Data
         {
             //return 100 = NIK tdk terdaftar
             //return 200 = email tdk terdaftar
-            //return 300 = confirm password tdk match
+            //return 300 = password salah
+            //return 400 = confirm password tdk match
 
             var checkEmail = myContext.Persons.Where(e => e.Email == cpVM.Email).FirstOrDefault();
             if (checkEmail == null)
@@ -90,9 +91,21 @@ namespace NETCore.Repository.Data
             {
                 return 100;
             }
-            if(cpVM.NewPassword != cpVM.ConfirmNewPassword)
+            
+            //var pass = myContext.Accounts.Where(a => a.Password == cpVM.OldPassword).FirstOrDefault();
+            //if (pass == null)
+            //{
+            //    return 300;
+            //}
+
+            if (!BCrypt.Net.BCrypt.Verify(cpVM.OldPassword, account.Password))
             {
                 return 300;
+            }
+
+            if (cpVM.NewPassword != cpVM.ConfirmNewPassword)
+            {
+                return 400;
             }
 
             //generate new password

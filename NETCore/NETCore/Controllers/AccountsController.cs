@@ -100,6 +100,14 @@ namespace NETCore.Controllers
                 return BadRequest(new
                 {
                     status = HttpStatusCode.BadRequest,
+                    message = "Password salah!"
+                });
+            }
+            else if (output == 400)
+            {
+                return BadRequest(new
+                {
+                    status = HttpStatusCode.BadRequest,
                     message = "Konfirmasi password tidak sama!"
                 });
             }
