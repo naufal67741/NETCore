@@ -31,7 +31,7 @@ namespace NETCore.Controllers
                 return BadRequest(new
                 {
                     status = HttpStatusCode.BadRequest,
-                    message = "Email Not Found",
+                    message = "Email/Account not found Not Found",
                     /*error = e*/
                 });
             }
@@ -43,10 +43,10 @@ namespace NETCore.Controllers
             });
         }
 
-        [HttpPost("reset-password/email={Email}&token={Token}")]
+       /* [HttpPost("reset-password/email={Email}&token={Token}")]
         public ActionResult ResetPassword(string Email, string Token)
         {
-            /*string tempEmail = Request.Query.Keys.Contains("email").ToString();*/
+            *//*string tempEmail = Request.Query.Keys.Contains("email").ToString();*//*
             int output = repository.ResetPassword(Email, Token);
             if (output == 100)
             {
@@ -54,7 +54,7 @@ namespace NETCore.Controllers
                 {
                     status = HttpStatusCode.BadRequest,
                     message = "Wrong Token !",
-                    /*error = e*/
+                    *//*error = e*//*
                 });
             }else if (output == 200)
             {
@@ -62,7 +62,7 @@ namespace NETCore.Controllers
                 {
                     status = HttpStatusCode.BadRequest,
                     message = "Wrong Email !",
-                    /*error = e*/
+                    *//*error = e*//*
                 });
             }
             return Ok(new
@@ -70,6 +70,49 @@ namespace NETCore.Controllers
                 statusCode = StatusCode(200),
                 status = HttpStatusCode.OK,
                 message = "Password has been reset !"
+            });
+            *//*return RedirectToAction()*//*
+        }*/
+
+        [HttpPost("change-password")]
+        public ActionResult ChangePassword(ChangePasswordVM cpVM)
+        {
+            //return 100 = old password salah/wrong password
+            //return 200 = no email/account
+            //return 300 = confirmation password doesnt match
+            int output = repository.ChangePassword(cpVM);
+            if (output == 100)
+            {
+                return BadRequest(new
+                {
+                    status = HttpStatusCode.BadRequest,
+                    message = "Wrong Password",
+                    /*error = e*/
+                });
+            }
+            else if (output == 200)
+            {
+                return BadRequest(new
+                {
+                    status = HttpStatusCode.BadRequest,
+                    message = "Wrong Email/Account !",
+                    /*error = e*/
+                });
+            }
+            else if (output == 300)
+            {
+                return BadRequest(new
+                {
+                    status = HttpStatusCode.BadRequest,
+                    message = "Confirmation Password doesnt match !",
+                    /*error = e*/
+                });
+            }
+            return Ok(new
+            {
+                /*statusCode = StatusCode(200),*/
+                status = HttpStatusCode.OK,
+                message = "Password has been changed !"
             });
             /*return RedirectToAction()*/
         }

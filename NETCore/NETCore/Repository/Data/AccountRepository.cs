@@ -31,15 +31,17 @@ namespace NETCore.Repository.Data
             {
                 return 100;
             }
-            /*account.Password = Guid.NewGuid().ToString();*/
-            checkEmail.Token = Guid.NewGuid().ToString();
-            string bodyEmail = $"Kamu lupa password ? Kalau iya, klik di sini reset-password/email={checkEmail.Email}&token={checkEmail.Token}, else abaikan";
-            Email(bodyEmail,checkEmail.Email);
-            myContext.SaveChanges();
+
+            string newPassword = Guid.NewGuid().ToString();
+            account.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            Update(account);
+
+            string bodyEmail = $"Password baru Anda: {newPassword}, Jangan sebarkan dan segera lakukan change password";
+            Email(bodyEmail, checkEmail.Email);
             return 1;
         }
 
-        public int ResetPassword(string email, string token)
+        /*public int ResetPassword(string email, string token)
         {
             //return 100 = NIK salah
             //return 200 = email salah
@@ -57,12 +59,44 @@ namespace NETCore.Repository.Data
             {
                 return 100;
             }
-            account.Password = BCrypt.Net.BCrypt.HashPassword(Guid.NewGuid().ToString());
-            /*myContext.SaveChanges();*/
+            string newPassword = Guid.NewGuid().ToString();
+            account.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            *//*myContext.SaveChanges();*//*
             Update(account);
             checkEmail.Token = null;
             myContext.SaveChanges();
-            //kirim email
+
+            string bodyEmail = $"Reset password berhasil ! Sekarang password kamu adalah : {newPassword}, Jangan disebar ya !";
+            Email(bodyEmail, checkEmail.Email);
+
+            return 1;
+        }*/
+
+        public int ChangePassword(ChangePasswordVM cpVM)
+        {
+            //return 100 = old password salah/wrong password
+            //return 200 = no email/account
+            //return 300 = confirmation password doesnt match
+            var checkEmail = myContext.Persons.Where(e => e.Email == cpVM.Email).FirstOrDefault();
+            if (checkEmail == null)
+            {
+                return 200;
+            }
+            var account = myContext.Accounts.Where(n => n.NIK == checkEmail.NIK).FirstOrDefault();
+            if (account == null)
+            {
+                return 200;
+            }
+            if(!BCrypt.Net.BCrypt.Verify(cpVM.OldPassword, account.Password))
+            {
+                return 100;
+            }
+            if(cpVM.NewPassword != cpVM.ConfirmNewPassword)
+            {
+                return 300;
+            }
+            account.Password = BCrypt.Net.BCrypt.HashPassword(cpVM.NewPassword);
+            Update(account);
             return 1;
         }
     }

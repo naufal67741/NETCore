@@ -29,26 +29,27 @@ namespace NETCore.Repository.Data
                                 prf.EducationId equals e.EducationId
                                 join u in myContext.Universities on
                                 e.UniversityId equals u.UniversityId
+                                /*join r in myContext.Roles on
+                                ar.RoleId equals r.RoleId*/
                                 select new PersonVM
                                 {
                                     NIK = p.NIK,
-                                    Token = p.Token,
                                     FullName = p.FirstName + " " + p.LastName,
                                     FirstName = p.FirstName,
                                     LastName = p.LastName,
                                     Phone = p.Phone,
                                     BirthDate = p.BirthDate,
-                                    /*gender = Enum.GetValues(typeof(p.gender)).Cast<PersonVM.Gender>(),*/
-                                    /*gender = Enum.Parse(PersonVM.Gender,1),*/
                                     gender = (PersonVM.Gender)p.gender,
                                     Salary = p.Salary,
                                     Email = p.Email,
-                                    Password = a.Password,
+                                    AccountRoles = a.AccountRoles,
+                                    /*Password = a.Password,*/
                                     Degree = e.Degree,
                                     GPA = e.GPA,
                                     UniversityId = u.UniversityId
                                 }).ToList();
-            return getPersonVMs;
+            
+            return getPersonVMs.ToList();
         }
 
         public PersonVM GetPersonVMs(string NIK)
@@ -62,6 +63,7 @@ namespace NETCore.Repository.Data
                                 prf.EducationId equals e.EducationId
                                 join u in myContext.Universities on
                                 e.UniversityId equals u.UniversityId
+
                                 select new PersonVM
                                 {
                                     NIK = p.NIK,
@@ -74,7 +76,7 @@ namespace NETCore.Repository.Data
                                     gender = (PersonVM.Gender)p.gender,
                                     Salary = p.Salary,
                                     Email = p.Email,
-                                    Password = a.Password,
+                                    /*Password = a.Password,*/
                                     Degree = e.Degree,
                                     GPA = e.GPA,
                                     UniversityId = u.UniversityId
@@ -115,6 +117,10 @@ namespace NETCore.Repository.Data
                 myContext.Accounts.Add(account);
                 myContext.SaveChanges();
 
+                AccountRole accountRole = new AccountRole();
+                accountRole.NIK = person.NIK;
+                accountRole.RoleId = 1;
+                myContext.AccountRoles.Add(accountRole);
                 /*University university = new University("Temp Name");
                 myContext.Universities.Add(university);*/
 

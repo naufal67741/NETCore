@@ -1,52 +1,53 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations; //tambahi ini untuk [Key] atau Constrain
+using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json.Converters;
 
 namespace NETCore.Models
 {
     public class Person
     {
-        [Key]
+        [Key]   //anotasi Primary Key
         public string NIK { get; set; }
+
         [Required]
         public string FirstName { get; set; }
+
         [Required]
         public string LastName { get; set; }
+
+        [Required]
         [Phone]
         public string Phone { get; set; }
-        public DateTime BirthDate { get; set; }
-        public string Token { get; set; }
-        public int Salary { get; set; }
+
         [Required]
+        public DateTime BirthDate { get; set; }
+
+        [Required]
+        [Range(10000000, 1000000000)]
+        public int Salary { get; set; }
+
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
-        public enum Gender { 
+
+        public enum Gender
+        {
             Male,
-            Female
+            Famale
         }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public Gender gender { get; set; }
+        public string Token { get; set; }
+
+
         [JsonIgnore]
+        //public string AccountId { get; set; }
         public virtual Account Account { get; set; }
-
-        /*public Person(string nIK, string firstName, string lastName, string phone, DateTime birthDate, int salary, string email)
-        {
-            NIK = nIK;
-            FirstName = firstName;
-            LastName = lastName;
-            Phone = phone;
-            BirthDate = birthDate;
-            Salary = salary;
-            Email = email;
-        }
-
-        public Person(string nIK, string firstName, string lastName, string phone, DateTime birthDate, int salary, string email, Gender gender) : this(nIK, firstName, lastName, phone, birthDate, salary, email)
-        {
-            this.gender = gender;
-        }*/
-
     }
 }

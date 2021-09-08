@@ -19,6 +19,8 @@ namespace NETCore.Context
         public DbSet<University> Universities { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<Profiling> Profilings { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<AccountRole> AccountRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,13 +34,28 @@ namespace NETCore.Context
                 .WithOne(a => a.Account)
                 .HasForeignKey<Profiling>(pr => pr.NIK);
 
+            /*modelBuilder.Entity<AccountRole>()
+                .HasKey(ar => new { ar.NIK, ar.RoleId});
+            modelBuilder.Entity<AccountRole>()
+                .HasOne(ar => ar.Account)
+                .WithMany(b => b.AccountRoles)
+                .HasForeignKey(ar => ar.NIK);
+            modelBuilder.Entity<AccountRole>()
+                .HasOne(bc => bc.Role)
+                .WithMany(c => c.AccountRoles)
+                .HasForeignKey(bc => bc.RoleId);*/
+
+            modelBuilder.Entity<Role>().HasMany(r => r.AccountRoles).WithOne(r => r.Role); 
+            modelBuilder.Entity<Account>().HasMany(a => a.AccountRoles).WithOne(a => a.Account); 
+            modelBuilder.Entity<AccountRole>().HasKey(ar => new { ar.NIK, ar.RoleId });
+
             modelBuilder.Entity<Education>()
                 .HasMany(pr => pr.Profilings)
-                .WithOne(e => e.Educations);
+                .WithOne(e => e.Education);
 
             modelBuilder.Entity<University>()
                 .HasMany(e => e.Educations)
-                .WithOne(u => u.Universities);
+                .WithOne(u => u.University);
         }
     }
 }
