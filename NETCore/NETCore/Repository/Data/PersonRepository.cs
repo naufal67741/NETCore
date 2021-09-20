@@ -52,6 +52,24 @@ namespace NETCore.Repository.Data
             return getPersonVMs.ToList();
         }
 
+        public GenderVM GetGenderVMs()
+        {
+            /*var query_f = $"select count(gender) from Persons where gender = 1";
+            var query_m = $"select count(gender) from Persons where gender = 0";
+            var data_f = myContext.Persons.FromSqlRaw(query_f).FirstOrDefault();
+            var data_m = myContext.Persons.FromSqlRaw(query_m).FirstOrDefault();
+            GenderVM genderVMret = new GenderVM();
+            genderVMret.MaleCounter = Convert.ToInt32(data_m);
+            genderVMret.FemaleCounter = Convert.ToInt32(data_f);
+            genderVMret.GenderCounter = Convert.ToInt32(data_m) + Convert.ToInt32(data_f);*/
+            return new GenderVM
+            {
+                GenderCounter = myContext.Persons.Where(x => x.gender == 0 || x.gender != 0).Count(),
+                MaleCounter = myContext.Persons.Where(x => x.gender == 0).Count(),
+                FemaleCounter = myContext.Persons.Where(x => x.gender != 0).Count(),
+            };
+        }
+
         public PersonVM GetPersonVMs(string NIK)
         {
             var getPersonVMs = (from p in myContext.Persons

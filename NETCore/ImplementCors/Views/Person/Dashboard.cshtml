@@ -1,0 +1,82 @@
+﻿@{ Layout = "~/Views/Shared/AdminLayout.cshtml"; }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+        <!-- Pie Chart -->
+        <div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Data Gender</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                        <canvas id="myPieChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-center small">
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-success"></i> Male
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-primary"></i> Female
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-xl-8 col-lg-7">-->
+        <!-- Bar Chart -->
+        <!--<div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Data Salary</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-bar">
+                    <canvas id="chartsalary"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>-->
+        <div class="col-4">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Salary</h3>
+                </div>
+                <div class="card-body">
+                    <div id="chartsalary">
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">GPA</h3>
+                </div>
+                <div class="card-body">
+                    <div id="chartGPA">
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/dashboard.js" asp-append-version="true"></script>
+
+</body>
+</html>

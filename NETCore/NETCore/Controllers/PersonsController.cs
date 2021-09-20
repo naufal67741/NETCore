@@ -35,8 +35,8 @@ namespace NETCore.Controllers
             this._configuration = _configuration;
         }
         //api/persons/getperson
-        
-        /*[EnableCors("AllowOrigin")]*/
+
+        [EnableCors("AllowAllOrigins")]
         [HttpGet("GetPerson")]
         public ActionResult GetPerson()
         {
@@ -63,6 +63,34 @@ namespace NETCore.Controllers
             }
         }
 
+        [EnableCors("AllowAllOrigins")]
+        [HttpGet("GetGender")]
+        public ActionResult GetGender()
+        {
+            var getGender = repository.GetGenderVMs();
+            if (getGender != null)
+            {
+                var get = Ok(new
+                {
+                    status = HttpStatusCode.OK,
+                    result = getGender,
+                    message = "Success"
+                });
+                return get;
+            }
+            else
+            {
+                var get = NotFound(new
+                {
+                    status = HttpStatusCode.NotFound,
+                    result = getGender,
+                    message = "Data Empty"
+                });
+                return get;
+            }
+        }
+
+        [EnableCors("AllowAllOrigins")]
         [HttpGet("GetPerson/{NIK}")]
         public ActionResult GetPerson(string NIK)
         {
@@ -89,8 +117,9 @@ namespace NETCore.Controllers
             }
         }
 
+        [EnableCors("AllowAllOrigins")]
         [HttpPost("Register")]
-        [AllowAnonymous]
+        /*[AllowAnonymous]*/
         public ActionResult Insert(PersonVM personVM)
         {
             try
@@ -135,8 +164,8 @@ namespace NETCore.Controllers
                 }
                 return Ok(new
                 {
-                    statusCode = StatusCode(200),
-                    status = HttpStatusCode.OK,
+                    
+                    statusCode = HttpStatusCode.OK,
                     message = "Success"
                 });
             }
@@ -149,7 +178,8 @@ namespace NETCore.Controllers
                 });
             }
         }
-        
+
+        [EnableCors("AllowAllOrigins")]
         [HttpPost("Login")]
         [AllowAnonymous]
         public ActionResult Login(LoginVM loginVM)

@@ -1,0 +1,145 @@
+﻿@{ Layout = "~/Views/Shared/AdminLayout.cshtml"; }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button"
+            class="item-detail btn btn-primary btn-register"
+            data-toggle="modal"
+            data-target="#registerModal"
+            onClick="personDetail('${data[" nik"]}')">
+        Register
+    </button>
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>NIK</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Detail</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Row 1 Data 1</td>
+                <td>Row 1 Data 2</td>
+            </tr>
+            <tr>
+                <td>Row 2 Data 1</td>
+                <td>Row 2 Data 2</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="personDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formRegister" method="post" action="/">
+                        <div class="form-group">
+                            <label for="inputEmail">Email address</label>
+                            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNIK">NIK</label>
+                            <input type="text" class="form-control" id="inputNIK" aria-describedby="emailHelp" placeholder="Enter NIK" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputFName">First Name</label>
+                            <input type="text" class="form-control" id="inputFName" aria-describedby="emailHelp" placeholder="Enter First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLName">Last Name</label>
+                            <input type="text" class="form-control" id="inputLName" aria-describedby="emailHelp" placeholder="Enter Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputGender">Choose your Gender:</label>
+                            <select id="inputGender" name="inputGenderName" class="form-control" required>
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPhone">Phone</label>
+                            <input type="number" class="form-control" id="inputPhone" aria-describedby="emailHelp" placeholder="Enter Phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDOB">Birth Date</label>
+                            <input type="date" class="form-control" id="inputDOB" aria-describedby="emailHelp" placeholder="Enter Birthdate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSalary">Salary</label>
+                            <input type="number" class="form-control" id="inputSalary" aria-describedby="emailHelp" placeholder="Enter Salary" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDegree">Degree</label>
+                            <input type="text" class="form-control" id="inputDegree" aria-describedby="emailHelp" placeholder="Enter Degree" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputGPA">GPA</label>
+                            <input type="text" class="form-control" id="inputGPA" aria-describedby="emailHelp" placeholder="Enter GPA" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputUniversity">Choose your university:</label>
+                            <select id="inputUniversity" name="inputUniversityName" class="form-control">
+                                <option value=""></option>
+
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit-register">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/person.js" asp-append-version="true"></script>
+
+</body>
+</html>

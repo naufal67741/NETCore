@@ -86,7 +86,7 @@ namespace NETCore.Repository
         public static void Email(string htmlString, string toMailAddress)
         {
                 string fromMail = "naufalbdo@gmail.com";
-                string fromPassword = "PASSWORD_LU";
+                string fromPassword = "PASSWORD_KAMU";
                 MailMessage message = new MailMessage();
                 
                 message.From = new MailAddress(fromMail);

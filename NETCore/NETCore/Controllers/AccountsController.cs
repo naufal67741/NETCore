@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NETCore.Base;
 using NETCore.Models;
@@ -21,7 +22,7 @@ namespace NETCore.Controllers
         {
             this.repository = repository;
         }
-        
+        [EnableCors("AllowOrigin")]
         [HttpPost("forget-password")]
         public ActionResult ForgetPassword(EmailVM emailVM)
         {
@@ -43,37 +44,37 @@ namespace NETCore.Controllers
             });
         }
 
-       /* [HttpPost("reset-password/email={Email}&token={Token}")]
-        public ActionResult ResetPassword(string Email, string Token)
-        {
-            *//*string tempEmail = Request.Query.Keys.Contains("email").ToString();*//*
-            int output = repository.ResetPassword(Email, Token);
-            if (output == 100)
-            {
-                return BadRequest(new
-                {
-                    status = HttpStatusCode.BadRequest,
-                    message = "Wrong Token !",
-                    *//*error = e*//*
-                });
-            }else if (output == 200)
-            {
-                return BadRequest(new
-                {
-                    status = HttpStatusCode.BadRequest,
-                    message = "Wrong Email !",
-                    *//*error = e*//*
-                });
-            }
-            return Ok(new
-            {
-                statusCode = StatusCode(200),
-                status = HttpStatusCode.OK,
-                message = "Password has been reset !"
-            });
-            *//*return RedirectToAction()*//*
-        }*/
-
+        /* [HttpPost("reset-password/email={Email}&token={Token}")]
+         public ActionResult ResetPassword(string Email, string Token)
+         {
+             *//*string tempEmail = Request.Query.Keys.Contains("email").ToString();*//*
+             int output = repository.ResetPassword(Email, Token);
+             if (output == 100)
+             {
+                 return BadRequest(new
+                 {
+                     status = HttpStatusCode.BadRequest,
+                     message = "Wrong Token !",
+                     *//*error = e*//*
+                 });
+             }else if (output == 200)
+             {
+                 return BadRequest(new
+                 {
+                     status = HttpStatusCode.BadRequest,
+                     message = "Wrong Email !",
+                     *//*error = e*//*
+                 });
+             }
+             return Ok(new
+             {
+                 statusCode = StatusCode(200),
+                 status = HttpStatusCode.OK,
+                 message = "Password has been reset !"
+             });
+             *//*return RedirectToAction()*//*
+         }*/
+        [EnableCors("AllowOrigin")]
         [HttpPost("change-password")]
         public ActionResult ChangePassword(ChangePasswordVM cpVM)
         {

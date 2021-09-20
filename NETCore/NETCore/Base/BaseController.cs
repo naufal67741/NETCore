@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NETCore.Repository.Interface;
 using System;
@@ -45,6 +47,7 @@ namespace NETCore.Base
                 });
             }
         }
+
         [HttpGet]
         public ActionResult Get()
         {
@@ -110,6 +113,7 @@ namespace NETCore.Base
                 });
             }
         }
+
 
         [HttpDelete("{key}")]
         public ActionResult Delete(Key key)

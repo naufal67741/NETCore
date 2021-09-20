@@ -26,11 +26,32 @@ namespace NETCore.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("NIK");
 
                     b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("NETCore.Models.AccountRole", b =>
+                {
+                    b.Property<string>("NIK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AccountNIK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("NIK", "RoleId");
+
+                    b.HasIndex("AccountNIK");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AccountRoles");
                 });
 
             modelBuilder.Entity("NETCore.Models.Education", b =>
@@ -79,10 +100,14 @@ namespace NETCore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Salary")
                         .HasColumnType("int");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("gender")
                         .HasColumnType("int");
@@ -107,6 +132,22 @@ namespace NETCore.Migrations
                     b.ToTable("Profilings");
                 });
 
+            modelBuilder.Entity("NETCore.Models.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("NETCore.Models.University", b =>
                 {
                     b.Property<int>("UniversityId")
@@ -116,7 +157,8 @@ namespace NETCore.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("UniversityId");
 
@@ -134,20 +176,37 @@ namespace NETCore.Migrations
                     b.Navigation("Person");
                 });
 
+            modelBuilder.Entity("NETCore.Models.AccountRole", b =>
+                {
+                    b.HasOne("NETCore.Models.Account", "Account")
+                        .WithMany("AccountRoles")
+                        .HasForeignKey("AccountNIK");
+
+                    b.HasOne("NETCore.Models.Role", "Role")
+                        .WithMany("AccountRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("NETCore.Models.Education", b =>
                 {
-                    b.HasOne("NETCore.Models.University", "Universities")
+                    b.HasOne("NETCore.Models.University", "University")
                         .WithMany("Educations")
                         .HasForeignKey("UniversityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Universities");
+                    b.Navigation("University");
                 });
 
             modelBuilder.Entity("NETCore.Models.Profiling", b =>
                 {
-                    b.HasOne("NETCore.Models.Education", "Educations")
+                    b.HasOne("NETCore.Models.Education", "Education")
                         .WithMany("Profilings")
                         .HasForeignKey("EducationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -161,11 +220,13 @@ namespace NETCore.Migrations
 
                     b.Navigation("Account");
 
-                    b.Navigation("Educations");
+                    b.Navigation("Education");
                 });
 
             modelBuilder.Entity("NETCore.Models.Account", b =>
                 {
+                    b.Navigation("AccountRoles");
+
                     b.Navigation("Profiling");
                 });
 
@@ -177,6 +238,11 @@ namespace NETCore.Migrations
             modelBuilder.Entity("NETCore.Models.Person", b =>
                 {
                     b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("NETCore.Models.Role", b =>
+                {
+                    b.Navigation("AccountRoles");
                 });
 
             modelBuilder.Entity("NETCore.Models.University", b =>
